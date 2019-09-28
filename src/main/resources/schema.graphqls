@@ -1,0 +1,25 @@
+schema {
+    query: Query
+}
+
+type Query {
+    user(id: String): User
+    tracksByUser(userId: String): [Track]
+    tracks: [Track]
+}
+
+type User {
+    id: String
+    username: String
+    createdAt: String
+    subscribedTracks: [Track]
+    contributedTracks: [Track]
+}
+
+type Track {
+    id: String
+    title: String
+    minutesPracticed: Int
+    subscribers: [User]
+    contributors: [User]
+}

@@ -1,0 +1,39 @@
+package com.refactory.daria.services.implementation;
+
+import com.refactory.daria.models.Track;
+import com.refactory.daria.repositories.TrackRepository;
+import com.refactory.daria.services.TrackService;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class TrackServiceImpl implements TrackService {
+
+    private final TrackRepository trackRepository;
+
+    @Autowired
+    TrackServiceImpl(TrackRepository trackRepository){
+        this.trackRepository = trackRepository;
+    }
+
+    @Override
+    public List<Track> findSubscribedTracksByUserId(ObjectId userId) {
+        return trackRepository.findBySubscriberIds(userId);
+    }
+
+    @Override
+    public List<Track> findContributedTracksByUserId(ObjectId userId) {
+        return trackRepository.findByContributorIds(userId);
+    }
+
+    @Override
+    public List<Track> findAllTracks() {
+        return (ArrayList)trackRepository.findAll();
+    }
+
+}
