@@ -6,10 +6,11 @@ import graphql.GraphQL;
 import graphql.GraphQLError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -24,7 +25,7 @@ public class MainController {
     private GraphQLUtility graphQlUtility;
 
     @Autowired
-    MainController(GraphQLUtility graphQlUtility) throws IOException {
+    public MainController(GraphQLUtility graphQlUtility) throws IOException {
         this.graphQlUtility = graphQlUtility;
         graphQL = graphQlUtility.createGraphQlObject();
     }

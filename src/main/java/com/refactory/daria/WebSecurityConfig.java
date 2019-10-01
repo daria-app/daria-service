@@ -16,9 +16,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .oauth2Login()
                 .redirectionEndpoint()
-                .baseUri("/oauth2/login")
-                .and()
-                .loginPage("https://local.hellodaria.com/login");
+                .baseUri("/oauth2/login");
+                //.and()
+                //.loginPage("https://local.hellodaria.com/login");
 
     }
 
