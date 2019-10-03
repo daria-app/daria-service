@@ -52,6 +52,7 @@ public class AuthController {
 
         String token = tokenProvider.createToken(authentication);
         return ResponseEntity.ok(new AuthResponse(token));
+
     }
 
     @PostMapping("/signup")
