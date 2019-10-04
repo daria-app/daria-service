@@ -9,6 +9,7 @@ import com.refactory.daria.payload.LoginRequest;
 import com.refactory.daria.payload.SignupRequest;
 import com.refactory.daria.repositories.UserRepository;
 import com.refactory.daria.security.TokenProvider;
+import com.refactory.daria.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,16 +31,18 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
     @Autowired
     private TokenProvider tokenProvider;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+
+        User user = userService.findOneByEmail(loginRequest.getEmail());
+        if (user == null) {
+            userService.createUser(loginRequest);
+        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -55,23 +58,9 @@ public class AuthController {
 
     }
 
+    /*
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
-
-        if(userRepository.findByEmail(signupRequest.getEmail()).size() > 0) {
-            throw new BadRequestException("Email address already in use.");
-        }
-
-        // Creating user's account
-        User user = new User();
-        user.setName(signupRequest.getName());
-        user.setEmail(signupRequest.getEmail());
-        user.setPassword(signupRequest.getPassword());
-        user.setProvider(AuthProvider.local);
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        User result = userRepository.save(user);
+    public ResponseEntity<?> registerUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/user/me")
@@ -80,5 +69,6 @@ public class AuthController {
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "User registered successfully@"));
     }
+     */
 
 }
