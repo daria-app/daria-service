@@ -1,11 +1,15 @@
 schema {
     query: Query
+    mutation: Mutation
 }
 
 type Query {
-    user(id: String): User
-    tracksByUser(userId: String): [Track]
     tracks: [Track]
+    track(id: String!): Track
+}
+
+type Mutation {
+    saveTrack(input: TrackInput!): Track!
 }
 
 type User {
@@ -19,7 +23,9 @@ type User {
 type Track {
     id: String
     title: String
-    minutesPracticed: Int
-    subscribers: [User]
-    contributors: [User]
+}
+
+input TrackInput {
+    id: String
+    title: String!
 }

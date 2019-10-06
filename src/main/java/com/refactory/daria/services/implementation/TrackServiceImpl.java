@@ -22,6 +22,11 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
+    public Track findTrackById(ObjectId id) {
+        return trackRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<Track> findSubscribedTracksByUserId(ObjectId userId) {
         return trackRepository.findBySubscriberIds(userId);
     }
@@ -34,6 +39,11 @@ public class TrackServiceImpl implements TrackService {
     @Override
     public List<Track> findAllTracks() {
         return (ArrayList)trackRepository.findAll();
+    }
+
+    @Override
+    public Track saveTrack(Track track) {
+        return trackRepository.save(track);
     }
 
 }

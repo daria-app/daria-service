@@ -58,17 +58,5 @@ public class AuthController {
 
     }
 
-    /*
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/user/me")
-                .buildAndExpand(result.getId()).toUri();
-
-        return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "User registered successfully@"));
-    }
-     */
 
 }
