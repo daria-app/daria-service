@@ -19,6 +19,7 @@ public class Track {
     private ObjectId id;
 
     private String title;
+    private String description;
     private Integer minutesPracticed;
 
     private List<String> subscriberIds;

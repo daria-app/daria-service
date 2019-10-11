@@ -14,5 +14,6 @@ public class TrackInput {
 
     private String id;
     private String title;
+    private String description;
 
 }
