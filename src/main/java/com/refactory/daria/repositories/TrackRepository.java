@@ -6,7 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface TrackRepository extends PagingAndSortingRepository<Track, ObjectId> {
-    List<Track> findBySubscriberIds(ObjectId userId);
-    List<Track> findByContributorIds(ObjectId userId);
+public interface TrackRepository extends PagingAndSortingRepository<Track, String> {
+    List<Track> findByIdNotIn(List<String> ids);
+    List<Track> findByAuthorId(String authorId);
 }

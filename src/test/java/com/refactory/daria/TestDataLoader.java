@@ -31,27 +31,6 @@ public class TestDataLoader {
     public void generateData() {
         userRepository.deleteAll();
         trackRepository.deleteAll();
-        List<User> users = new ArrayList<>();
-        users.add(User.builder().username("daria").createdAt(new Date()).subscribedTrackIds(new ArrayList<>()).contributedTrackIds(new ArrayList<>()).build());
-        users.add(User.builder().username("vladimir").createdAt(new Date()).subscribedTrackIds(new ArrayList<>()).contributedTrackIds(new ArrayList<>()).build());
-        users = (ArrayList) userRepository.saveAll(users);
-        List<Track> tracks = new ArrayList<>();
-        tracks.add(Track.builder().title("Finnish with Vladimir").minutesPracticed(0).build());
-        tracks.add(Track.builder().title("English with Vladimir").minutesPracticed(0).build());
-        tracks = (ArrayList) trackRepository.saveAll(tracks);
-        users.get(0).setSubscribedTrackIds(Arrays.asList(tracks.get(0).getId().toHexString(), tracks.get(1).getId().toHexString()));
-        users.get(1).setContributedTrackIds(Arrays.asList(tracks.get(0).getId().toHexString(), tracks.get(1).getId().toHexString()));
-        userRepository.saveAll(users);
-        tracks.get(0).setSubscriberIds(Arrays.asList(users.get(0).getId().toHexString()));
-        tracks.get(0).setContributorIds(Arrays.asList(users.get(1).getId().toHexString()));
-        tracks.get(1).setSubscriberIds(Arrays.asList(users.get(0).getId().toHexString()));
-        tracks.get(1).setContributorIds(Arrays.asList(users.get(1).getId().toHexString()));
-        trackRepository.saveAll(tracks);
-        users = (ArrayList) userRepository.findAll();
-        tracks = (ArrayList) trackRepository.findAll();
-        assertThat(users.get(0).getUsername()).isEqualTo("daria");
-        assertThat(tracks.get(0).getTitle()).isEqualTo("Finnish with Vladimir");
-
     }
 
 }

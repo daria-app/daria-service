@@ -26,23 +26,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findOneById(ObjectId id) {
+    public User findOneById(String id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public User findOneByEmail(String email) {
         return userRepository.findByEmail(email).stream().findAny().orElse(null);
-    }
-
-    @Override
-    public List<User> findContributorsByUserIds(List<String> contributorIds) {
-        return userRepository.findByIdIn(contributorIds);
-    }
-
-    @Override
-    public List<User> findSubscribersByUserIds(List<String> subscriberIds) {
-        return userRepository.findByIdIn(subscriberIds);
     }
 
     @Override

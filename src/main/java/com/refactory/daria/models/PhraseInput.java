@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TrackInput {
+public class PhraseInput {
 
     private String id;
-    private String title;
-    private String description;
+    private String text;
+    private String trackId;
+    private Integer order;
 
 }

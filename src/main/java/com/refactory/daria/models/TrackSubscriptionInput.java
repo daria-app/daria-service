@@ -9,10 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TrackInput {
-
-    private String id;
-    private String title;
-    private String description;
-
+public class TrackSubscriptionInput {
+    private String trackId;
 }

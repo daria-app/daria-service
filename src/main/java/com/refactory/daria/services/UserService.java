@@ -10,9 +10,7 @@ import java.util.List;
 public interface UserService {
 
     User findOneByEmail(String email);
-    User findOneById(ObjectId id);
-    List<User> findSubscribersByUserIds(List<String> subscriberIds);
-    List<User> findContributorsByUserIds(List<String> contributorIds);
+    User findOneById(String id);
 
     User createUser(LoginRequest loginRequest);
 

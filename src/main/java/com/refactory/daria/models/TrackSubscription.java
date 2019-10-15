@@ -16,26 +16,23 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "tracks")
-public class Track {
+@Document(collection = "subscriptions")
+public class TrackSubscription {
 
     @Id
     private String id;
 
-    private String title;
-    private String description;
-    private String authorId;
+    private String providerId;
+    private String subscriberId;
+    private String trackId;
 
     @Transient
-    private User author;
+    private Track track;
 
     @Transient
-    private Boolean subscribed;
+    private User provider;
 
     @Transient
-    private String subscriptionId;
-
-    @Transient
-    private List<Phrase> phrases;
+    private User subscriber;
 
 }

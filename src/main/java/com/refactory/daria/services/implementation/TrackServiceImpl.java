@@ -22,18 +22,8 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
-    public Track findTrackById(ObjectId id) {
+    public Track findTrackById(String id) {
         return trackRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<Track> findSubscribedTracksByUserId(ObjectId userId) {
-        return trackRepository.findBySubscriberIds(userId);
-    }
-
-    @Override
-    public List<Track> findContributedTracksByUserId(ObjectId userId) {
-        return trackRepository.findByContributorIds(userId);
     }
 
     @Override
